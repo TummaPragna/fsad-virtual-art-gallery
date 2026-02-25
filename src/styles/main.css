@@ -1,0 +1,591 @@
+.container {
+  width: 90%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f9;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+.navbar {
+  background: #1e1e2f;
+  color: white;
+  padding: 15px 0;
+}
+
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-size: 16px;
+}
+
+.gallery {
+  margin-top: 40px;
+}
+.gallery h2 {
+  font-size: 28px;
+}
+.gallery {
+  padding: 20px 0 60px 0;
+}
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 35px;
+  margin-top: 30px;
+}
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: 0.25s ease;
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* Image skeleton loading */
+.image-skeleton-container {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.image-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.image-skeleton-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+.card-content {
+  padding: 18px;
+}
+
+.card-content h3 {
+  margin-bottom: 6px;
+}
+
+.card-content p {
+  color: #666;
+  margin-bottom: 14px;
+}
+button {
+  background: #6c63ff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.role-container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.role-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.role-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.role-card:hover {
+  transform: translateY(-6px);
+}
+
+.role-card h3 {
+  margin-bottom: 10px;
+}
+
+.role-card p {
+  color: #666;
+  font-size: 14px;
+}
+
+/* LOGIN PAGE */
+.login-wrapper {
+  height: 100vh;
+  background: linear-gradient(120deg, #4facfe, #00f2fe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  width: 320px;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+}
+
+.login-box input,
+.login-box select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.auth-page {
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1547891654-e66ed7ebb968");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-box {
+  background: rgba(255,255,255,0.9);
+  padding: 40px;
+  border-radius: 12px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.auth-box input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.auth-box button {
+  background: #6c63ff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.navbar button {
+  background: #6c63ff;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+/* TOUR PAGE */
+.tour-page {
+  padding: 40px;
+  text-align: center;
+}
+
+.tour-gallery {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.tour-gallery img {
+  width: 100%;
+  border-radius: 12px;
+  height: 240px;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tour-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+/* ===== MODERN LANDING PAGE ===== */
+
+.landing {
+  height: 100vh;
+  width: 100%;
+
+  background-image:
+    url("https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=1800&auto=format&fit=crop");
+
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* Dark cinematic overlay */
+.landing-overlay {
+  height: 100%;
+  width: 100%;
+
+  background: linear-gradient(
+    120deg,
+    rgba(10, 10, 25, 0.85),
+    rgba(20, 20, 50, 0.75)
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Content */
+.landing-content {
+  max-width: 750px;
+  color: white;
+  padding: 20px;
+  animation: fadeIn 1.2s ease;
+}
+
+.landing-content h1 {
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.landing-content p {
+  font-size: 20px;
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+/* Buttons */
+.landing-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.landing-buttons button {
+  padding: 16px 36px;
+  font-size: 16px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  background: linear-gradient(135deg, #6c63ff, #8b5cf6);
+  color: white;
+}
+
+.landing-buttons button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+/* Secondary button */
+.landing-buttons .secondary {
+  background: transparent;
+  border: 2px solid #8b5cf6;
+}
+
+.landing-buttons .secondary:hover {
+  background: #8b5cf6;
+}
+
+/* Smooth entrance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.gallery {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
+    url("https://images.unsplash.com/photo-1513351105278-4f3c8a65a45c?q=80&w=1600&auto=format&fit=crop");
+  background-size: cover;
+}
+/* TOUR HERO */
+.tour-hero {
+  height: 100vh;
+  background-image:
+    linear-gradient(rgba(10,10,20,0.75), rgba(10,10,20,0.85)),
+    url("https://images.unsplash.com/photo-1518998053901-5348d3961a04");
+
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tour-overlay {
+  text-align: center;
+  color: white;
+  max-width: 1000px;
+}
+
+.tour-overlay h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.tour-preview {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tour-preview img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.tour-preview img:hover {
+  transform: scale(1.05);
+}
+.dashboard {
+  padding: 40px 60px;
+}
+
+.dashboard h1 {
+  margin-bottom: 5px;
+}
+
+.dashboard p {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.dashboard-table th {
+  background: #1e1e2f;
+  color: white;
+  padding: 14px;
+  text-align: left;
+}
+
+.dashboard-table td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.dashboard-table tr:hover {
+  background: #f7f7fb;
+}
+
+.dashboard-table button {
+  background: #6c63ff;
+  padding: 8px 14px;
+  margin-right: 8px;
+  border-radius: 6px;
+}
+
+.dashboard-table button.danger {
+  background: #ff5a5a;
+}
+/* ===== ROLE SELECTION PAGE ===== */
+
+.role-page {
+  height: 100vh;
+  background-image:
+    linear-gradient(rgba(15,15,30,0.75), rgba(15,15,30,0.85)),
+    url("https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=1600&auto=format&fit=crop");
+
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.role-overlay {
+  width: 100%;
+}
+
+.role-container {
+  text-align: center;
+  color: white;
+}
+
+.role-container h2 {
+  font-size: 38px;
+  margin-bottom: 40px;
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  width: 900px;
+  max-width: 95%;
+  margin: auto;
+}
+
+.role-card {
+  background: rgba(255,255,255,0.95);
+  color: #222;
+  padding: 30px 20px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.35s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.role-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+.role-card h3 {
+  margin-bottom: 10px;
+  color: #6c63ff;
+}
+/* ===== ARTIST PAGE ===== */
+
+.artist-page {
+  height: 100vh;
+  background-image:
+    linear-gradient(rgba(10,10,25,0.85), rgba(20,20,50,0.85)),
+    url("https://images.unsplash.com/photo-1518998053901-5348d3961a04?q=80&w=1600&auto=format&fit=crop");
+
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.artist-overlay {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.artist-box {
+  width: 400px;
+  padding: 40px;
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+  color: white;
+}
+
+.artist-box h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.artist-box input {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.artist-box input:focus {
+  box-shadow: 0 0 0 2px #6c63ff;
+}
+
+.artist-box button {
+  padding: 14px;
+  border-radius: 30px;
+  font-size: 15px;
+  background: linear-gradient(135deg, #6c63ff, #8b5cf6);
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.artist-box button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
