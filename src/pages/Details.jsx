@@ -5,21 +5,17 @@ import { GalleryContext } from "../Context/Gallerycontext";
 
 function Details() {
   const { id } = useParams();
-  const { artworks: uploadedArtworks, contactGallery } = useContext(GalleryContext);
+  const { artworks: uploadedArtworks, requestPurchase } = useContext(GalleryContext);
 
   const [message, setMessage] = useState("");
 
   const allArtworks = [...artworks, ...uploadedArtworks];
   const art = allArtworks.find(a => a.id === Number(id));
-
   if (!art) {
     return <h2 style={{ padding: "40px" }}>Artwork not found</h2>;
   }
 
-  const handleContact = () => {
-    contactGallery(art);
-    setMessage("Gallery contacted successfully. Please wait for response.");
-  };
+  
 
   return (
     <div className="container" style={{ padding: "40px" }}>
@@ -53,9 +49,15 @@ function Details() {
             {art.description || "This artwork represents traditional heritage and storytelling."}
           </p>
 
-          <button style={{ marginTop: "25px" }} onClick={handleContact}>
-            Contact Gallery
-          </button>
+          <button
+  style={{ marginTop: "25px" }}
+  onClick={() => {
+    requestPurchase(art);
+    alert("Gallery Contacted. Please wait for confirmation.");
+  }}
+>
+  Contact Gallery
+</button>
 
           {message && (
             <p style={{ color: "green", marginTop: "15px" }}>

@@ -589,3 +589,323 @@ button {
   transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
+/* ===== CURATOR PAGE CINEMATIC BACKGROUND ===== */
+
+.curator-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  background-image:
+    linear-gradient(rgba(15,15,30,0.65), rgba(15,15,30,0.75)),
+    url("https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1600&auto=format&fit=crop");
+
+  background-size: cover;
+  background-position: center;
+}
+
+/* Soft blur overlay so content blends */
+.curator-overlay {
+  backdrop-filter: blur(6px);
+  min-height: 100vh;
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* ===== GLASS EFFECT PANEL ===== */
+
+.curator-page .dashboard {
+  width: 90%;
+  max-width: 1200px;
+
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+
+  border-radius: 18px;
+  padding: 35px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25),
+    inset 0 0 1px rgba(255,255,255,0.6);
+
+  transition: 0.4s ease;
+}
+
+/* slight hover breathing */
+.curator-page .dashboard:hover {
+  transform: translateY(-2px);
+}
+/* ===== FLOATING PAINT BLOBS ===== */
+
+.curator-page::before,
+.curator-page::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.25;
+  animation: floatPaint 18s ease-in-out infinite;
+}
+
+.curator-page::before {
+  background: #ff4ecd;
+  top: -80px;
+  left: -120px;
+}
+
+.curator-page::after {
+  background: #6c63ff;
+  bottom: -100px;
+  right: -120px;
+  animation-delay: 6s;
+}
+
+/* animation movement */
+@keyframes floatPaint {
+  0%   { transform: translateY(0px) translateX(0px); }
+  50%  { transform: translateY(40px) translateX(25px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+/* ===== ADMIN PAGE BACKGROUND ===== */
+
+.admin-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  background-image:
+    linear-gradient(rgba(15,15,30,0.75), rgba(15,15,30,0.85)),
+    url("https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=1600&auto=format&fit=crop");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.admin-overlay {
+  backdrop-filter: blur(5px);
+  min-height: 100vh;
+  padding: 50px 0;
+}
+
+/* ===== Top Navigation inside Admin ===== */
+
+.admin-topbar {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.admin-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.tab-btn {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab-btn:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.tab-btn.active {
+  background: #6c63ff;
+}
+
+/* ===== Notification Bell ===== */
+
+.notification-wrapper {
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.notification-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* ===== Floating Paint Effect ===== */
+
+.admin-page::before {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: #6c63ff;
+  filter: blur(120px);
+  opacity: 0.25;
+  top: -100px;
+  left: -100px;
+  animation: floatAdmin 18s ease-in-out infinite;
+}
+
+@keyframes floatAdmin {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(40px); }
+  100% { transform: translateY(0px); }
+}
+/* Background */
+.tour-hero {
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1518998053901-5348d3961a04")
+    center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glass overlay */
+.tour-overlay {
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px);
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  width: 80%;
+  max-width: 900px;
+}
+
+/* Title */
+.tour-title {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+/* Subtitle */
+.tour-subtitle {
+  opacity: 0.8;
+  margin-bottom: 30px;
+}
+
+/* Artwork frame */
+.tour-frame {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  margin-bottom: 20px;
+}
+
+.tour-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: zoomMove 6s ease-in-out infinite;
+}
+
+/* Slow museum camera movement */
+@keyframes zoomMove {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Dots */
+.tour-dots {
+  margin-bottom: 25px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background: gray;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #6c63ff;
+}
+
+/* Button */
+.enter-btn {
+  padding: 12px 30px;
+  background: #6c63ff;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.enter-btn:hover {
+  transform: scale(1.05);
+  background: #5848d6;
+}
+/* Walkthrough Layout */
+.walkthrough {
+  height: 100vh;
+  background: #111;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  padding: 40px;
+}
+
+/* Artwork */
+.art-display img {
+  width: 500px;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  animation: floatArt 6s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes floatArt {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Info */
+.art-info {
+  max-width: 400px;
+}
+
+.art-info h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.art-info p {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.art-info span {
+  font-size: 14px;
+  color: #6c63ff;
+}

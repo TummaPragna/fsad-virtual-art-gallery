@@ -4,61 +4,79 @@ export const GalleryContext = createContext();
 
 export const GalleryProvider = ({ children }) => {
   const [artworks, setArtworks] = useState([]);
+  const[approvedByCurator, setApprovedByCurator] = useState([]);
+  const[buyRequests, setBuyRequests] = useState([]);
 
-  // 🔹 NEW: store user inquiries
-  const [inquiries, setInquiries] = useState([]);
-
+  // 🔹 Artist Upload
   const addArtwork = (title, image) => {
     const newArt = {
       id: Date.now(),
       title,
       image,
       artist: "Uploaded Artist",
-      status: "Pending",
+      status: "Pending", // pending until curator approves
     };
 
     setArtworks(prev => [...prev, newArt]);
   };
 
+  // 🔹 Curator Approves
   const approveArtwork = (id) => {
     setArtworks(prev =>
-      prev.map(a => (a.id === id ? { ...a, status: "Approved" } : a))
+      prev.map(a => a.id === id ? { ...a, status: "Approved" } : a)
     );
   };
 
+  // 🔹 Curator Rejects
   const rejectArtwork = (id) => {
     setArtworks(prev =>
-      prev.map(a => (a.id === id ? { ...a, status: "Rejected" } : a))
+      prev.map(a => a.id === id ? { ...a, status: "Rejected" } : a)
     );
   };
-
-  const deleteArtwork = (id) => {
-    setArtworks(prev => prev.filter(a => a.id !== id));
+  // 🔹 Admin Deletes Artwork
+const deleteArtwork = (id) => {
+  setArtworks(prev => prev.filter(a => a.id !== id));
+};
+// 🔹 Curator sends approved artwork to Admin
+const curatorApprove = (art) => {
+  const approvedArt = {
+    ...art,
+    approvedAt: new Date().toLocaleString()
   };
 
-  // 🔹 NEW FUNCTION → called when visitor clicks Contact Gallery
-  const contactGallery = (artwork) => {
-    const newInquiry = {
-      id: Date.now(),
-      artworkTitle: artwork.title,
-      artist: artwork.artist,
-      status: "New Inquiry",
-    };
-
-    setInquiries(prev => [...prev, newInquiry]);
+  setApprovedByCurator(prev => [...prev, approvedArt]);
+};
+  // 🔹 Visitor Purchase Request
+  // 🔹 Visitor sends purchase request → Admin Notification
+const requestPurchase = (art) => {
+  const request = {
+    id: Date.now(),
+    title: art.title,
+    artist: art.artist,
+    time: new Date().toLocaleString(),
+    status: "Waiting"
   };
+
+  setBuyRequests(prev => [...prev, request]);
+};
+
+  
 
   return (
     <GalleryContext.Provider
       value={{
-        artworks,
-        addArtwork,
-        approveArtwork,
-        rejectArtwork,
-        deleteArtwork,
-        contactGallery,
-        inquiries
-      }}
+  artworks,
+  addArtwork,
+  approveArtwork,
+  rejectArtwork,
+  deleteArtwork,
+
+  curatorApprove,
+  approvedByCurator,
+
+  requestPurchase,
+  buyRequests
+}}
     >
       {children}
     </GalleryContext.Provider>

@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import { useState, useContext } from "react";
+import { GalleryContext } from "../Context/Gallerycontext";
 function Curator() {
   const [artworks, setArtworks] = useState([
     { id: 1, title: "Urban Lines", artist: "Aarav Sharma", status: "Pending" },
@@ -14,46 +14,55 @@ function Curator() {
     );
     setArtworks(updated);
   };
+  const { curatorApprove } = useContext(GalleryContext);
+return (
+  <div className="curator-page">
+    <div className="curator-overlay">
 
-  return (
-    <div className="dashboard">
-      <h1>Curator Panel</h1>
-      <p>Review and approve artworks for exhibition.</p>
+      <div className="dashboard">
+        <h1>Curator Panel</h1>
+        <p>Review and approve artworks for exhibition.</p>
 
-      <table className="dashboard-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Status</th>
-            <th>Review</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {artworks.map((art) => (
-            <tr key={art.id}>
-              <td>{art.title}</td>
-              <td>{art.artist}</td>
-              <td>{art.status}</td>
-              <td>
-                <button onClick={() => handleReview(art.id, "Approved")}>
-                  Approve
-                </button>
-
-                <button
-                  className="danger"
-                  onClick={() => handleReview(art.id, "Rejected")}
-                >
-                  Reject
-                </button>
-              </td>
+        <table className="dashboard-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Artist</th>
+              <th>Status</th>
+              <th>Review</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {artworks.map((art) => (
+              <tr key={art.id}>
+                <td>{art.title}</td>
+                <td>{art.artist}</td>
+                <td>{art.status}</td>
+                <td>
+                  <button onClick={() => {
+  handleReview(art.id, "Approved");
+  curatorApprove(art);   // ⭐ sends to Admin
+}}>
+                    Approve
+                  </button>
+
+                  <button
+                    className="danger"
+                    onClick={() => handleReview(art.id, "Rejected")}
+                  >
+                    Reject
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
     </div>
-  );
+  </div>
+);
 }
 
 export default Curator;

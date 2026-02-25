@@ -12,7 +12,7 @@ import Curator from "./pages/Curator";
 import Details from "./pages/Details";
 
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import AdminNotifications from "./components/AdminNotifications";
 function App() {
   const location = useLocation();
 
