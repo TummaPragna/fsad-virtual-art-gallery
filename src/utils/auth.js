@@ -10,3 +10,4 @@ export const getRole = () => {
 export const logout = () => {
   localStorage.removeItem("user");
 };
+//commit6
