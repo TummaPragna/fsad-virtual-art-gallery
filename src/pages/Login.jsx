@@ -15,7 +15,7 @@ function Login() {
       else navigate("/home");
     }
   }, [navigate]);
-
+//commit1
   // Clear only selectedRole
   useEffect(() => {
     localStorage.removeItem("selectedRole");
