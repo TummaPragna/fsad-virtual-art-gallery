@@ -7,18 +7,35 @@ function Artist() {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
 
-  const handleUpload = () => {
-    if (!title || !image) {
-      alert("Please fill all fields");
-      return;
-    }
+ const handleUpload = async () => {
+  if (!title || !image) {
+    alert("Please fill all fields");
+    return;
+  }
 
-    // This already adds artwork to context
-    addArtwork(title, image);
+  try {
+    await fetch("http://localhost:8081/api/artworks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        image,
+        artist: "ARTIST" // or user email if you want
+      }),
+    });
+
+    alert("Artwork uploaded successfully!");
 
     setTitle("");
     setImage("");
-  };
+
+  } catch (err) {
+    alert("Error uploading artwork");
+  }
+};
+  
 
   return (
   <div className="artist-page">

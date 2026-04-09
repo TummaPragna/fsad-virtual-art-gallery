@@ -21,9 +21,9 @@ const handleLogout = () => {
           <Link to="/tour">Virtual Tour</Link>
 
           {/* Show links based on role */}
-          {role === "Artist" && <Link to="/artist">Artist Panel</Link>}
-          {role === "Admin" && <Link to="/admin">Admin</Link>}
-          {role === "Curator" && <Link to="/curator">Curator</Link>}
+          {role === "ARTIST" && <Link to="/artist">Artist Panel</Link>}
+          {role === "ADMIN" && <Link to="/admin">Admin</Link>}
+          {role === "CURATOR" && <Link to="/curator">Curator</Link>}
 
           {/* If not logged in */}
           {!role && <Link to="/login">Login</Link>}

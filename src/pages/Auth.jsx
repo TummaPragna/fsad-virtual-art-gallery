@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../utils/auth";
 
 function Auth() {
   const navigate = useNavigate();
@@ -13,27 +12,37 @@ function Auth() {
   useEffect(() => {
     if (!role) navigate("/login");
   }, [role, navigate]);
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  try {
+    const response = await fetch("http://localhost:8081/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
 
-    login(role); // Save login permanently
-    localStorage.removeItem("selectedRole");
+    const data = await response.json();
 
-    // Redirect based on role
-    if (role === "Artist") {
-  navigate("/artist");
-}
-else if (role === "Admin") {
-  navigate("/admin");
-}
-else if (role === "Curator") {
-  navigate("/curator");
-}
-else {
-  navigate("/home");
-}
-  };
+    // ✅ THIS IS IMPORTANT
+    localStorage.setItem("user", JSON.stringify(data));
+
+    const userRole = data.role;
+
+    if (userRole === "ADMIN") navigate("/admin");
+    else if (userRole === "ARTIST") navigate("/artist");
+    else if (userRole === "CURATOR") navigate("/curator");
+    else navigate("/home");
+
+  } catch (err) {
+    alert("Login failed");
+  }
+};
 
   return (
     <div className="auth-page">

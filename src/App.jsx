@@ -10,9 +10,10 @@ import Artist from "./pages/Artist";
 import Admin from "./pages/Admin";
 import Curator from "./pages/Curator";
 import Details from "./pages/Details";
-
+import { Navigate } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminNotifications from "./components/AdminNotifications";
+
 function App() {
   const location = useLocation();
 
@@ -31,7 +32,7 @@ function App() {
         <Route
           path="/home"
           element={
-            <ProtectedRoute allowedRole="Visitor">
+            <ProtectedRoute allowedRole="VISITOR">
               <Home />
             </ProtectedRoute>
           }
@@ -40,7 +41,7 @@ function App() {
         <Route
           path="/artist"
           element={
-            <ProtectedRoute allowedRole="Artist">
+            <ProtectedRoute allowedRole="ARTIST">
               <Artist />
             </ProtectedRoute>
           }
@@ -49,7 +50,7 @@ function App() {
         <Route
           path="/curator"
           element={
-            <ProtectedRoute allowedRole="Curator">
+            <ProtectedRoute allowedRole="CURATOR">
               <Curator />
             </ProtectedRoute>
           }
@@ -58,7 +59,7 @@ function App() {
         <Route
           path="/admin"
           element={
-            <ProtectedRoute allowedRole="Admin">
+            <ProtectedRoute allowedRole="ADMIN">
               <Admin />
             </ProtectedRoute>
           }
@@ -66,6 +67,7 @@ function App() {
 
         <Route path="/tour" element={<Tour />} />
         <Route path="/details/:id" element={<Details />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );

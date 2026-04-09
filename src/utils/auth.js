@@ -1,11 +1,12 @@
-export const login = (role) => {
-  localStorage.setItem("role", role);
-};
-
-export const logout = () => {
-  localStorage.removeItem("role");
+export const getUser = () => {
+  return JSON.parse(localStorage.getItem("user"));
 };
 
 export const getRole = () => {
-  return localStorage.getItem("role");
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user?.role;
+};
+
+export const logout = () => {
+  localStorage.removeItem("user");
 };

@@ -1,13 +1,20 @@
-import artworksData from "../data/artworks";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 import { GalleryContext } from "../Context/Gallerycontext";
+import artworksData from "../data/artworks";
 
 function Home() {
-  const { artworks: uploadedArtworks } = useContext(GalleryContext);
+  const [artworks, setArtworks] = useState([]);
 
-  // Merge default artworks + artist uploaded artworks
-  const allArtworks = [...artworksData, ...uploadedArtworks];
+useEffect(() => {
+  fetch("http://localhost:8081/api/artworks")
+    .then((res) => res.json())
+    .then((data) => {
+      // Merge DB + static
+      setArtworks([...artworksData, ...data]);
+    })
+    .catch((err) => console.log(err));
+}, []);
 
   return (
     <div className="gallery">
@@ -15,7 +22,7 @@ function Home() {
         <h2>Featured Artworks</h2>
 
         <div className="card-container">
-          {allArtworks.map((art) => (
+          {artworks.map((art) => (
             <div className="card" key={art.id}>
               <img
                 src={art.image}
@@ -26,18 +33,20 @@ function Home() {
                 }}
               />
 
-             <div className="card-content">
-  <h3>{art.title}</h3>
-  <p>By {art.artist}</p>
+              <div className="card-content">
+                <h3>{art.title}</h3>
+                <p>By {art.artist}</p>
 
-  <p style={{ fontSize: "14px", color: "#777", marginBottom: "10px" }}>
-    {art.description?.substring(0, 80)}...
-  </p>
+                <p style={{ fontSize: "14px", color: "#777" }}>
+                  {art.description
+                    ? art.description.substring(0, 80)
+                    : "No description"}...
+                </p>
 
-  <Link to={`/details/${art.id}`}>
-    <button>View Details</button>
-  </Link>
-</div>
+                <Link to={`/details/${art.id}`}>
+                  <button>View Details</button>
+                </Link>
+              </div>
             </div>
           ))}
         </div>

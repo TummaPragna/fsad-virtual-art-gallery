@@ -1,16 +1,15 @@
 import { Navigate } from "react-router-dom";
-import { getRole } from "../utils/auth";
 
 function ProtectedRoute({ children, allowedRole }) {
-  const role = getRole();
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  // If not logged in → go to login
-  if (!role) {
+  // Not logged in
+  if (!user) {
     return <Navigate to="/login" />;
   }
 
-  // If wrong role → go home
-  if (role !== allowedRole) {
+  // Role mismatch
+  if (allowedRole && user.role !== allowedRole) {
     return <Navigate to="/" />;
   }
 
