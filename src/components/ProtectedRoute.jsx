@@ -15,5 +15,5 @@ function ProtectedRoute({ children, allowedRole }) {
 
   return children;
 }
-
+//commit5
 export default ProtectedRoute;
