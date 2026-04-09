@@ -6,7 +6,7 @@ function Admin() {
     { id: 2, title: "Blue Geometry", artist: "Kiran Rao", status: "Approved" },
     { id: 3, title: "Forest Light", artist: "Dev Menon", status: "Pending" },
   ]);
-
+//commit8
   const handleDelete = (id) => {
     const filtered = artworks.filter((art) => art.id !== id);
     setArtworks(filtered);
