@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { GalleryContext } from "../Context/Gallerycontext";
-
+//commit7
 function Artist() {
   const { addArtwork } = useContext(GalleryContext);
 
