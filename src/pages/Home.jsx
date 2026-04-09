@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GalleryContext } from "../Context/Gallerycontext";
 import artworksData from "../data/artworks";
-
+//commit6
 function Home() {
   const [artworks, setArtworks] = useState([]);
 
