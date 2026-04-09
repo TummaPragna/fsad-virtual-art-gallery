@@ -13,7 +13,7 @@ import Details from "./pages/Details";
 import { Navigate } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminNotifications from "./components/AdminNotifications";
-
+//commit3
 function App() {
   const location = useLocation();
 
