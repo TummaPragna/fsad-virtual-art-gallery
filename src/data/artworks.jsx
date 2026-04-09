@@ -8,7 +8,7 @@ const artworks = [
     description:
       "Madhubani painting uses natural dyes and intricate symbolism inspired by mythology and rural traditions.",
   },
-
+//commit9
   {
     id: 2,
     title: "Warli Tribal Art",
