@@ -3,14 +3,15 @@ import { getRole, logout } from "../utils/auth";
 
 function Navbar() {
   const navigate = useNavigate();
-  const role = getRole();
+  const user = JSON.parse(localStorage.getItem("user"));
+const role = user?.role;
+const name = user?.name;
 
   
 const handleLogout = () => {
-  localStorage.clear();
-  navigate("/");
+  localStorage.removeItem("user");   // only remove user
+  navigate("/login");
 };
-
   return (
     <div className="navbar">
       <div className="navbar-inner">
@@ -32,8 +33,8 @@ const handleLogout = () => {
           {role && (
             <>
               <span style={{ marginLeft: "20px", color: "#fff" }}>
-                👤 {role}
-              </span>
+  👤 {name || role}
+</span>
 
               <button
                 style={{ marginLeft: "15px" }}
@@ -48,5 +49,6 @@ const handleLogout = () => {
     </div>
   );
 }
+
 
 export default Navbar;

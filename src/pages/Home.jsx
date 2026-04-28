@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GalleryContext } from "../Context/Gallerycontext";
 import artworksData from "../data/artworks";
+import { getArtworks } from "../api/api";
 //commit6
 function Home() {
   const [artworks, setArtworks] = useState([]);
 
+
 useEffect(() => {
-  fetch("http://localhost:8081/api/artworks")
-    .then((res) => res.json())
+  getArtworks()
     .then((data) => {
-      // Merge DB + static
       setArtworks([...artworksData, ...data]);
     })
-    .catch((err) => console.log(err));
+    .catch(() => alert("Failed to load artworks"));
 }, []);
 
   return (

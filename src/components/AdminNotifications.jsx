@@ -1,40 +1,49 @@
-import { useContext, useState } from "react";
-import { GalleryContext } from "../Context/Gallerycontext";
+import { useState, useEffect } from "react";
 
 function AdminNotifications() {
-  const { buyRequests, approvedByCurator } = useContext(GalleryContext);
+  const [orders, setOrders] = useState([]);
   const [open, setOpen] = useState(false);
 
-  const total = buyRequests.length + approvedByCurator.length;
+  // 🔹 Fetch orders from backend
+  useEffect(() => {
+    fetch("http://localhost:8081/api/orders")
+      .then(res => res.json())
+      .then(data => setOrders(data))
+      .catch(() => console.log("Failed to load orders"));
+  }, []);
 
   return (
     <div style={{ position: "relative" }}>
+      {/* 🔔 Bell */}
       <button onClick={() => setOpen(!open)}>
-        🔔 {total}
+        🔔 {orders.length}
       </button>
 
+      {/* 🔽 Dropdown */}
       {open && (
         <div style={{
           position: "absolute",
           right: 0,
           top: "40px",
-          width: "300px",
-          background: "white",
+          width: "280px",
+          background: "#1e1e2f",
+          color: "#fff",
           padding: "15px",
           borderRadius: "10px",
-          boxShadow: "0 5px 20px rgba(0,0,0,0.2)",
-          zIndex: 100
+          boxShadow: "0 5px 20px rgba(0,0,0,0.3)",
+          zIndex: 1000
         }}>
-          <h4>Notifications</h4>
+          <h4 style={{ marginBottom: "10px" }}>Orders</h4>
 
-          {approvedByCurator.map((a, i) => (
-            <p key={i}>✅ Curator approved: {a.title}</p>
+          {orders.length === 0 && (
+            <p style={{ color: "#ccc" }}>No orders yet</p>
+          )}
+
+          {orders.map((o) => (
+            <p key={o.id}>
+              🛒 {o.buyerName} ordered "{o.artworkTitle}"
+            </p>
           ))}
-
-          {buyRequests.map((r, i) => (
-<p key={i}>🛒 Purchase request for "{r.title}"</p>          ))}
-
-          {total === 0 && <p>No new updates</p>}
         </div>
       )}
     </div>

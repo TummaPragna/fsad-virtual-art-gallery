@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { GalleryContext } from "../Context/Gallerycontext";
+import { addArtworkAPI } from "../api/api";
 //commit7
 function Artist() {
   const { addArtwork } = useContext(GalleryContext);
@@ -7,32 +8,25 @@ function Artist() {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
 
- const handleUpload = async () => {
+
+const handleUpload = async () => {
   if (!title || !image) {
     alert("Please fill all fields");
     return;
   }
 
   try {
-    await fetch("http://localhost:8081/api/artworks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title,
-        image,
-        artist: "ARTIST" // or user email if you want
-      }),
+    await addArtworkAPI({
+      title,
+      image,
+      artist: "ARTIST",
     });
 
     alert("Artwork uploaded successfully!");
-
     setTitle("");
     setImage("");
-
-  } catch (err) {
-    alert("Error uploading artwork");
+  } catch {
+    alert("Upload failed");
   }
 };
   
